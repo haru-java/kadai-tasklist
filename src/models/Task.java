@@ -1,7 +1,11 @@
 /*
 Lesson 16Chapter 5.3
 モデル（DTO）の作成参考
+src/models/Message.javaの変えたもの。
 
+Lesson 16Chapter 6
+index（一覧表示）の作成
+ “一覧表示するデータを取得するためのJPQL” を追記
  */
 
 package models;
@@ -13,9 +17,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllTasks",
+        query = "SELECT t FROM Task AS t ORDER BY t.id DESC"
+    )
+})
+
 @Table(name = "tasks")
 public class Task {
     @Id
